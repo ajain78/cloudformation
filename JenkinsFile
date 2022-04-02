@@ -1,0 +1,32 @@
+pipeline{
+    agent any
+    parameters{
+        string(name: "BranchName", defaultvalue: "main")
+        string(name: "AWS_Credentials_ID", defaultvalue: "AWS_Cred")
+        string(name: "GIT_Cred_ID", defaultvalue: "GIT_Cred")
+        string(name: "DeploymentBucket", defaultvalue: "cfn-tmplate-bucket-1991")
+    }
+    stages{
+        stage("CleanUp"){
+            steps{
+                deleteDir()
+            }
+        }
+        stage("Get Code"){
+            steps{
+                # checkout scm
+                gitbranch:${params.BranchName},
+                    GIT_Cred_ID: $(params.GIT_Cred_ID)
+                    url: ''
+
+            }
+        }
+        stage("Upload the file in S3"){
+            steps{
+                withAWS(credenatials: "${params.AWS_Credentials_ID}", region: "${params.region}"){
+                    s3Upload(file: "${TAG_NAME}, bucket:"${params.DeploymentBucket}")
+                }
+            }
+        }
+    }
+}
