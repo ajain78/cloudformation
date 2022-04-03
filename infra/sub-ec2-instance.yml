@@ -23,11 +23,11 @@ Resources:
     Type: AWS::EC2::Instance
     Properties: 
       ImageId: ami-0c02fb55956c7d316
-      InstaneType: t2-micro
+      InstanceType: t2-micro
       KeyName: Jenkins
       SubnetId: subnet-0691c420df320c2c1
       VpcId: vpc-0b8cab68038bbf411
-      SecurityGroupId: sg-0a024b5f851d9600b
+      SecurityGroupIds: sg-0a024b5f851d9600b
       BlockDeviceMappings: 
       - DeviceName: "/dev/sdm"
         Ebs: 
