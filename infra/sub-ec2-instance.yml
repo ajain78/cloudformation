@@ -4,7 +4,7 @@ Description: 'sub ec2 stack: ec2-intance'
 
 InstaneType:
   Description: type of the instance
-  Type: AWS::SSM::Parameter::Value<string>
+  Type: AWS::SSM::Parameter::Valsue<string>
 KeyName:
   Description: key of the instance
   Type: AWS::SSM::Parameter::Value<AWS:EC2:KeyPair:KeyName>
@@ -22,12 +22,12 @@ Resources:
   MyEC2Instance: 
     Type: AWS::EC2::Instance
     Properties: 
-      ImageId: !Ref ImageId
-      InstaneType: !Ref InstaneType
-      KeyName: !Ref KeyName
-      SubnetId: !Ref SubnetId
-      VpcId: !Ref VpcId
-      SecurityGroupId: !Ref SecurityGroupId
+      ImageId: ami-0c02fb55956c7d316
+      InstaneType: t2-micro
+      KeyName: Jenkins
+      SubnetId: subnet-0691c420df320c2c1
+      VpcId: vpc-0b8cab68038bbf411
+      SecurityGroupId: sg-0a024b5f851d9600b
       BlockDeviceMappings: 
       - DeviceName: "/dev/sdm"
         Ebs: 
